@@ -41,9 +41,9 @@ export default class Index extends Component<IProps, IState> {
 
   componentDidHide () { }
 
-  handleClick() {
+  handleClick(stock: StockItem) {
     Taro.navigateTo({
-      url: "../detail/index"
+      url: `../detail/index?id=${stock.stockId}`
     })
   }
 
@@ -71,13 +71,17 @@ export default class Index extends Component<IProps, IState> {
   render () {
     return (
       <View className='stock-follow-list'>
+        <View className='stock-follow-list__item'>
+          <Text className="stock-follow-list__item-code g-font-bold">股票编码</Text>
+          <Text className="stock-follow-list__item-name g-font-bold">股票名称</Text>
+        </View>
         {
           this.state.list.map(item => {
             return (
-              <View className='stock-follow-list__item' key={item.stockId} onClick={this.handleClick}>
-                <Text>{item.stockCode}</Text>
-                <Text >{item.stockName}</Text>
-                <Text>{date.formatDate(item.followTime)}</Text>
+              <View className='stock-follow-list__item' key={item.stockId} onClick={this.handleClick.bind(this, item)}>
+                <Text className="stock-follow-list__item-code">{item.stockCode}</Text>
+                <Text className="stock-follow-list__item-name">{item.stockName}</Text>
+                <Text className="stock-follow-list__item-icon">></Text>
               </View>
             )
           })

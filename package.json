@@ -42,9 +42,9 @@
     "@tarojs/taro-tt": "2.0.6",
     "@tarojs/taro-weapp": "2.0.6",
     "date-fns": "^2.10.0",
+    "echarts12": "^1.1.6",
     "nerv-devtools": "^1.5.5",
-    "nervjs": "^1.5.5",
-    "taro-ui": "^2.3.0"
+    "nervjs": "^1.5.5"
   },
   "devDependencies": {
     "@tarojs/mini-runner": "2.0.6",

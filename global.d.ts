@@ -9,13 +9,6 @@ declare module "*.scss";
 declare module "*.sass";
 declare module "*.styl";
 
-/** api module */
-declare module "*/api/stock"
-
-/** util module */
-declare module "*/util/date"
-
-
 // @ts-ignore
 declare const process: {
   env: {

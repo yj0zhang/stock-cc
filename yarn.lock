@@ -4399,6 +4399,11 @@ ecc-jsbn@~0.1.1:
     jsbn "~0.1.0"
     safer-buffer "^2.1.0"
 
+echarts12@^1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/echarts12/-/echarts12-1.1.6.tgz#3161a7bee4fea67f10ed7d62f924f6dfdc018ba5"
+  integrity sha512-jrTAJNU/2xlly1C3kxuvUDlvBGipLXXdwwYIk8oyXsyThsb4tzy7ttfa4YJ17OJLVujnvOZu5Xrwbb4dsfg/Cw==
+
 ee-first@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
@@ -4550,6 +4555,11 @@ eslint-config-taro@2.0.6:
   integrity sha512-O/pdmVhfG2G5w26T3MZRVsR4HO4kPf0F4Q83hg4CCsRwmHwm7UFsLq53d6s+aJI3GphX1l1z+FQ/GAI0cGEw4g==
   dependencies:
     eslint-plugin-taro "2.0.6"
+
+eslint-import-resolver-alias@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/eslint-import-resolver-alias/-/eslint-import-resolver-alias-1.1.2.tgz#297062890e31e4d6651eb5eba9534e1f6e68fc97"
+  integrity sha512-WdviM1Eu834zsfjHtcGHtGfcu+F30Od3V7I9Fi57uhBEwPkjDcii7/yW8jAT+gOhn4P/vOxxNAXbFAKsrrc15w==
 
 eslint-import-resolver-node@^0.3.2:
   version "0.3.3"
@@ -10324,18 +10334,6 @@ tar@^2.0.0:
     block-stream "*"
     fstream "^1.0.12"
     inherits "2"
-
-taro-ui@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/taro-ui/-/taro-ui-2.3.0.tgz#1094cd0c9e4c50c6ac08ca19409c55408f46e32a"
-  integrity sha512-cbpnjACW4M5pLUGMl3EB+/AyNnckDpN2oMzvE6a6yjnyc9lpEHS0xBfiYlYaWgqsBp24OFVM4MsY7OBQMSDC2A==
-  dependencies:
-    "@types/react" "^16.7.3"
-    bind-decorator "^1.0.11"
-    classnames "^2.2.6"
-    dayjs "^1.7.7"
-    lodash "^4.17.10"
-    prop-types "^15.6.2"
 
 terser-webpack-plugin@^1.1.0, terser-webpack-plugin@^1.4.3:
   version "1.4.3"

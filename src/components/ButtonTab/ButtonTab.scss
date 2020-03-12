@@ -1,0 +1,11 @@
+.ButtonTab {
+  display: flex;
+  flex-direction: row;
+  &__active {
+    color: #fff;
+    background-color: #0380ef;
+  }
+  & button {
+    flex: 1
+  }
+}

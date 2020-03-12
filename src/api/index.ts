@@ -2,16 +2,26 @@ import Taro from "@tarojs/taro"
 
 const API_BASE = "https://api.1fox3.com/";
 
+interface requestHeaders {
+  'Content-Type'?: String
+}
+interface Options {
+  url: String,
+  headers?: requestHeaders,
+  method?: String,
+  data?: Object | String
+}
 
-export default (options = {method: String, data: {}, url: String}) => {
+export default (options: Options) => {
   return new Promise((resolve, reject) => {
     Taro.request({
       url: API_BASE + options.url,
       data: options.data,
-      headers: {
-        'Content-type': 'application/json'
+      header: {
+        'Content-type': 'application/json',
+        ...options.headers
       },
-      method: options.method.toString().toUpperCase() || "GET",
+      method: options.method ? options.method.toUpperCase() : "GET"
     }).then(
       (res) => {
         const { statusCode, data } = res;

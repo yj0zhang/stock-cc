@@ -1,32 +1,49 @@
+import stockApi from "@/api/stock";
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
+import { Echart } from 'echarts12'
 
-interface StockDetail {
-  id: number,
-  name?: String,
+import ButtonTab from "@/components/ButtonTab"
+
+interface btn {
+  id: Number,
+  name: String
 }
 
 interface IProps {}
 
+interface StockDetail {
+  name?: String
+}
+
 interface IState {
-  detail: StockDetail
+  detail: StockDetail,
+  lineData: Object,
+  buttonList: Array<btn>,
+  active: Number
 }
 
 export default class Index extends Component<IProps, IState> {
 
+  id = (this.$router.params || {}).id || 0
   constructor(props) {
     super(props);
     this.state = {
-      detail: {id: 0}
+      detail: {},
+      lineData: {},
+      buttonList: [
+        {id: 1, name: "实时"},
+        {id: 2, name: "离线"},
+      ],
+      active: 1
     }
   }
 
   componentWillMount () { }
 
   componentDidMount () {
-    this.setState({
-      detail: {id: 2, name: "顶点软件"}
-    })
+    this.getDetail()
+    this.getOffLineData()
   }
 
   componentWillUnmount () { }
@@ -35,10 +52,24 @@ export default class Index extends Component<IProps, IState> {
 
   componentDidHide () { }
 
-  handleClick() {
-    Taro.navigateTo({
-      url: "pages/detail"
-    })
+  getDetail() {
+    stockApi.fetchDetail(this.id).then(
+      ({body}) => {
+        this.setState({
+          detail: body
+        })
+      }
+    )
+  }
+
+  getOffLineData() {
+    stockApi.fetchOffLineData(this.id).then(
+      ({body}) => {
+        this.setState({
+          lineData: body
+        })
+      }
+    )
   }
 
   /**
@@ -52,10 +83,26 @@ export default class Index extends Component<IProps, IState> {
     navigationBarTitleText: '详情'
   }
 
+  lineOptions = {
+    xAxis: {
+        type: 'category',
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        type: 'line'
+    }]
+  }
+
   render () {
     return (
       <View className='index'>
         <Text >{this.state.detail.name}</Text>
+        <Echart option={this.lineOptions} />
+        <ButtonTab buttonList={this.state.buttonList} active={this.state.active}></ButtonTab>
       </View>
     )
   }

@@ -8,5 +8,13 @@
     & text {
       margin-right: 16px;
     }
+    &-name,
+    &-code {
+      width: 40%;
+      display: inline-block;
+    }
+    &-icon {
+      color: #ccc;
+    }
   }
 }
