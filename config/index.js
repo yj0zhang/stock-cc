@@ -1,3 +1,5 @@
+const path = require("path")
+
 const config = {
   projectName: 'stock-cc',
   date: '2020-3-11',
@@ -19,11 +21,15 @@ const config = {
     plugins: [
       'transform-decorators-legacy',
       'transform-class-properties',
-      'transform-object-rest-spread'
+      'transform-object-rest-spread',
+      "transform-async-to-generator"
     ]
   },
   plugins: [],
   defineConstants: {
+  },
+  alias: {
+    '@': path.resolve(__dirname, "..", "src")
   },
   mini: {
     postcss: {
@@ -67,7 +73,8 @@ const config = {
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
       }
-    }
+    },
+    esnextModules: ['taro-ui']
   }
 }
 
