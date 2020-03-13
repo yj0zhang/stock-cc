@@ -18,8 +18,15 @@ function fetchOffLineData(id) {
   })
 }
 
+function fetchRealTimeData(id) {
+  return ajaxInstance({
+    url: `/stock/realtime/line?stockId=${id}`
+  })
+}
+
 export default {
   fetchList,
   fetchDetail,
-  fetchOffLineData
+  fetchOffLineData,
+  fetchRealTimeData
 }

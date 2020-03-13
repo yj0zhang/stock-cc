@@ -6,6 +6,7 @@
     background-color: #0380ef;
   }
   & button {
-    flex: 1
+    flex: 1;
+    min-width: 180px;
   }
 }

@@ -1,10 +1,17 @@
 import stockApi from "@/api/stock";
+import PollingService from "@/lib/polling";
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import { Echart } from 'echarts12'
+import { realTimeLineOptions, offlineOptions } from "@/service/echartsOptionService"
 
 import ButtonTab from "@/components/ButtonTab"
 
+interface PollingInterface {
+  restart: Function,
+  startPolling: Function,
+  stopPolling: Function
+}
 interface btn {
   id: Number,
   name: String
@@ -18,10 +25,15 @@ interface StockDetail {
 
 interface IState {
   detail: StockDetail,
-  lineData: Object,
+  offlineConfig: Object,
+  realtimeConfig: Object,
   buttonList: Array<btn>,
-  active: Number
+  active: Number,
+  realTimePolling: PollingInterface,
+  chartsDataReady: Boolean
 }
+
+const realtime = 1, offline = 2
 
 export default class Index extends Component<IProps, IState> {
 
@@ -30,23 +42,41 @@ export default class Index extends Component<IProps, IState> {
     super(props);
     this.state = {
       detail: {},
-      lineData: {},
+      offlineConfig: {},
+      realtimeConfig: {},
       buttonList: [
-        {id: 1, name: "实时"},
-        {id: 2, name: "离线"},
+        {id: realtime, name: "实时"},
+        {id: offline, name: "离线"},
       ],
-      active: 1
+      active: offline,
+      realTimePolling: new PollingService(10, () => {}),
+      chartsDataReady: false
     }
   }
 
-  componentWillMount () { }
+  componentWillMount () {
+    this.setState({
+      realTimePolling: new PollingService(
+        10 * 1000,
+        () => { return stockApi.fetchRealTimeData(this.id) },
+        this.updateRealTimeData.bind(this),
+        err => { console.log(err) }
+      )
+    })
+  }
 
   componentDidMount () {
     this.getDetail()
-    this.getOffLineData()
+    if (this.state.active === realtime) {
+      this.state.realTimePolling.startPolling()
+    } else {
+      this.getOffLineData()
+    }
   }
 
-  componentWillUnmount () { }
+  componentWillUnmount () {
+    this.state.realTimePolling.stopPolling()
+  }
 
   componentDidShow () { }
 
@@ -66,10 +96,35 @@ export default class Index extends Component<IProps, IState> {
     stockApi.fetchOffLineData(this.id).then(
       ({body}) => {
         this.setState({
-          lineData: body
+          offlineConfig: offlineOptions(body.lineNode),
+          chartsDataReady: this.state.active === offline
         })
       }
     )
+  }
+
+  updateRealTimeData({body}) {
+    this.setState({
+      realtimeConfig: realTimeLineOptions(body),
+      chartsDataReady: this.state.active === realtime
+    })
+  }
+
+  activeChange(type) {
+    this.setState({
+      chartsDataReady: false,
+      active: type.id
+    })
+    if (type.id === realtime) {
+      this.state.realTimePolling.startPolling()
+    } else if (type.id === offline) {
+      this.state.realTimePolling.stopPolling()
+      this.getOffLineData()
+    }
+  }
+
+  offlineRef: () => {
+    debugger
   }
 
   /**
@@ -83,26 +138,19 @@ export default class Index extends Component<IProps, IState> {
     navigationBarTitleText: '详情'
   }
 
-  lineOptions = {
-    xAxis: {
-        type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-    },
-    yAxis: {
-        type: 'value'
-    },
-    series: [{
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
-        type: 'line'
-    }]
-  }
-
   render () {
     return (
       <View className='index'>
         <Text >{this.state.detail.name}</Text>
-        <Echart option={this.lineOptions} />
-        <ButtonTab buttonList={this.state.buttonList} active={this.state.active}></ButtonTab>
+        {this.state.active === realtime && this.state.chartsDataReady ?
+          (<Echart style={'height: 600px'} option={this.state.realtimeConfig}/>):
+          null
+        }
+        {this.state.active === offline && this.state.chartsDataReady ?
+          (<Echart ref="offlineRef" style={'height: 600px'} option={this.state.offlineConfig}/>):
+          null
+        }
+        <ButtonTab buttonList={this.state.buttonList} active={this.state.active} activeChange={this.activeChange.bind(this)}></ButtonTab>
       </View>
     )
   }

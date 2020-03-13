@@ -10,7 +10,8 @@ interface btn {
 
 interface IProps {
   buttonList: Array<btn>,
-  active: Number
+  active: Number,
+  activeChange: Function
 }
 
 interface IState {
@@ -26,10 +27,13 @@ export default class ButtonTab extends Component<IProps, IState> {
   }
 
   handleClick(btn) {
+    if (this.state.activeId === btn.id) {
+      return;
+    }
     this.setState({
       activeId: btn.id
     })
-    console.log(btn)
+    this.props.activeChange && this.props.activeChange(btn)
   }
 
   render() {
@@ -37,7 +41,7 @@ export default class ButtonTab extends Component<IProps, IState> {
       <View className="ButtonTab">
         {this.props.buttonList.map(btn => {
           return (
-            <Button className={this.state.activeId === btn.id ? "ButtonTab__active" : ""} onClick={this.handleClick.bind(this, btn)}>
+            <Button size="mini" className={this.state.activeId === btn.id ? "ButtonTab__active" : ""} onClick={this.handleClick.bind(this, btn)}>
               <Text>{btn.name}</Text>
             </Button>
           )

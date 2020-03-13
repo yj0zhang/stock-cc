@@ -21,8 +21,7 @@ const config = {
     plugins: [
       'transform-decorators-legacy',
       'transform-class-properties',
-      'transform-object-rest-spread',
-      "transform-async-to-generator"
+      'transform-object-rest-spread'
     ]
   },
   plugins: [],
