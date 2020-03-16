@@ -49,9 +49,9 @@ export default class Index extends Component<IProps, IState> {
 
   getList() {
     stockApi.fetchList().then(
-      data => {
+      ({data}) => {
         this.setState({
-          list: data.body
+          list: data
         })
       }
     )

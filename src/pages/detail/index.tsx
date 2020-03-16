@@ -84,9 +84,9 @@ export default class Index extends Component<IProps, IState> {
 
   getDetail() {
     stockApi.fetchDetail(this.id).then(
-      ({body}) => {
+      ({data}) => {
         this.setState({
-          detail: body
+          detail: data
         })
       }
     )
@@ -94,18 +94,18 @@ export default class Index extends Component<IProps, IState> {
 
   getOffLineData() {
     stockApi.fetchOffLineData(this.id).then(
-      ({body}) => {
+      ({data}) => {
         this.setState({
-          offlineConfig: offlineOptions(body.lineNode),
+          offlineConfig: offlineOptions(data.lineNode),
           chartsDataReady: this.state.active === offline
         })
       }
     )
   }
 
-  updateRealTimeData({body}) {
+  updateRealTimeData({data}) {
     this.setState({
-      realtimeConfig: realTimeLineOptions(body),
+      realtimeConfig: realTimeLineOptions(data),
       chartsDataReady: this.state.active === realtime
     })
   }
