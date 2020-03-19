@@ -1,8 +1,8 @@
-import stockApi from "@/api/stock";
-import date from "@/util/date";
+
 
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
+import { fetchList } from "@/api/stock";
 
 import './index.scss'
 
@@ -43,12 +43,12 @@ export default class Index extends Component<IProps, IState> {
 
   handleClick(stock: StockItem) {
     Taro.navigateTo({
-      url: `../detail/index?id=${stock.stockId}`
+      url: `/pages/detail/index?id=${stock.stockId}`
     })
   }
 
   getList() {
-    stockApi.fetchList().then(
+    fetchList().then(
       ({data}) => {
         this.setState({
           list: data

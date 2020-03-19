@@ -1,30 +1,36 @@
-import ajaxInstance from "./index";
+import {
+  get
+} from "./base/fetch";
 
 function fetchList() {
-  return ajaxInstance({
-    url: "/stock/follow/list"
-  })
+  return get("/stock/follow/list")
 }
 
 function fetchDetail(id) {
-  return ajaxInstance({
-    url: `/stock/realtime/info?stockId=${id}`
+  return get("/stock/realtime/info", {
+    data: {
+      stockId: id
+    }
   })
 }
 
 function fetchOffLineData(id) {
-  return ajaxInstance({
-    url: `/stock/offline/line?stockId=${id}`
+  return get("/stock/offline/line", {
+    data: {
+      stockId: id
+    }
   })
 }
 
 function fetchRealTimeData(id) {
-  return ajaxInstance({
-    url: `/stock/realtime/line?stockId=${id}`
+  return get("/stock/realtime/line", {
+    data: {
+      stockId: id
+    }
   })
 }
 
-export default {
+export {
   fetchList,
   fetchDetail,
   fetchOffLineData,

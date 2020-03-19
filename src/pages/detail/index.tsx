@@ -1,9 +1,9 @@
-import stockApi from "@/api/stock";
 import PollingService from "@/lib/polling";
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import { Echart } from 'echarts12'
 import { realTimeLineOptions, offlineOptions } from "@/service/echartsOptionService"
+import { fetchDetail, fetchRealTimeData, fetchOffLineData } from "@/api/stock";
 
 import ButtonTab from "@/components/ButtonTab"
 
@@ -58,7 +58,7 @@ export default class Index extends Component<IProps, IState> {
     this.setState({
       realTimePolling: new PollingService(
         10 * 1000,
-        () => { return stockApi.fetchRealTimeData(this.id) },
+        () => { return fetchRealTimeData(this.id) },
         this.updateRealTimeData.bind(this),
         err => { console.log(err) }
       )
@@ -83,7 +83,7 @@ export default class Index extends Component<IProps, IState> {
   componentDidHide () { }
 
   getDetail() {
-    stockApi.fetchDetail(this.id).then(
+    fetchDetail(this.id).then(
       ({data}) => {
         this.setState({
           detail: data
@@ -93,7 +93,7 @@ export default class Index extends Component<IProps, IState> {
   }
 
   getOffLineData() {
-    stockApi.fetchOffLineData(this.id).then(
+    fetchOffLineData(this.id).then(
       ({data}) => {
         this.setState({
           offlineConfig: offlineOptions(data.lineNode),
