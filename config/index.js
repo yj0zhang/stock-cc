@@ -21,7 +21,13 @@ const config = {
     plugins: [
       'transform-decorators-legacy',
       'transform-class-properties',
-      'transform-object-rest-spread'
+      'transform-object-rest-spread',
+      ['transform-runtime', {
+        "helpers": false,
+        "polyfill": false,
+        "regenerator": true,
+        "moduleName": 'babel-runtime'
+      }]
     ]
   },
   plugins: [],

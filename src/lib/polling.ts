@@ -1,8 +1,3 @@
-interface PollingInterface {
-  restart: Function,
-  startPolling: Function,
-  stopPolling: Function
-}
 
 interface _polling_status_ {
   pending: Number,

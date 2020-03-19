@@ -41,12 +41,14 @@
     "@tarojs/taro-swan": "2.0.6",
     "@tarojs/taro-tt": "2.0.6",
     "@tarojs/taro-weapp": "2.0.6",
+    "babel-runtime": "^6.26.0",
     "date-fns": "^2.10.0",
     "echarts12": "^1.1.6",
     "keymirror": "^0.1.1",
     "lodash": "^4.17.15",
     "nerv-devtools": "^1.5.5",
-    "nervjs": "^1.5.5"
+    "nervjs": "^1.5.5",
+    "regenerator-runtime": "^0.11.1"
   },
   "devDependencies": {
     "@tarojs/mini-runner": "2.0.6",
@@ -60,6 +62,7 @@
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-jsx-stylesheet": "^0.6.5",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "eslint": "^5.16.0",
     "eslint-config-taro": "2.0.6",

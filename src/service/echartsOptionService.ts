@@ -39,7 +39,7 @@ function calculateMA(dayCount, data) {
     return result;
 }
 
-const realTimeLineOptions: Function = (data) => {
+const realTimeLineOptions = (data) => {
   let timeNode = map(data.lineNode, "time");
   let priceList = map(data.lineNode, "price");
   let minPrice = min(priceList);
@@ -122,7 +122,7 @@ interface IlineNode {
   dealNum: number
 }
 
-const offlineOptions: Function =  (lineData: Array<IlineNode>) => {
+const offlineOptions = (lineData: Array<IlineNode>) => {
   let rawData:Array<Array<string | number>> = []
   let highLightStartDate = "", highLightEndDate = "";
   let highLightNum = 30;

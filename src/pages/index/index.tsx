@@ -1,23 +1,18 @@
 
 
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
-import { fetchList } from "@/api/stock";
+import { View } from '@tarojs/components'
+import Auth from '@/components/Auth'
+import UserModel from "@/models/UserModel"
+import { saveUserInfo } from "@/api/user"
 
-import './index.scss'
-
-
-interface StockItem {
-  stockId: number,
-  stockCode: String,
-  stockName: String,
-  followTime: String
-}
+const userInfo = new UserModel()
 
 interface IProps {}
 
 interface IState {
-  list: Array<StockItem>
+  list: Array<IStock>
+  needAuth: Boolean
 }
 
 export default class Index extends Component<IProps, IState> {
@@ -25,15 +20,29 @@ export default class Index extends Component<IProps, IState> {
   constructor(props) {
     super(props);
     this.state = {
-      list: []
+      list: [],
+      needAuth: false
     }
   }
 
-  componentWillMount () { }
+  async componentWillMount () {
 
-  componentDidMount () {
-    this.getList()
+    //确保用户已登录
+    await userInfo.ensureLogin()
+
+    this.setState({
+      needAuth: !userInfo.getAuthState()
+    }, () => {
+      if (!this.state.needAuth) {
+        Taro.navigateTo({
+          url: '/pages/list/index'
+        })
+      }
+    })
+
   }
+
+  componentDidMount () {}
 
   componentWillUnmount () { }
 
@@ -41,20 +50,19 @@ export default class Index extends Component<IProps, IState> {
 
   componentDidHide () { }
 
-  handleClick(stock: StockItem) {
-    Taro.navigateTo({
-      url: `/pages/detail/index?id=${stock.stockId}`
+  async authSucess(res: any) {
+    if (!userInfo.authCode) {
+      return
+    }
+    await saveUserInfo({
+      platId:'stock',
+      code: userInfo.authCode,
+      encryptedData: res.detail.encryptedData,
+      iv: res.detail.iv,
     })
-  }
-
-  getList() {
-    fetchList().then(
-      ({data}) => {
-        this.setState({
-          list: data
-        })
-      }
-    )
+    Taro.navigateTo({
+      url: '/pages/list/index'
+    })
   }
 
   /**
@@ -65,27 +73,13 @@ export default class Index extends Component<IProps, IState> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    navigationBarTitleText: '关注列表'
+    navigationBarTitleText: '授权'
   }
 
   render () {
     return (
-      <View className='stock-follow-list'>
-        <View className='stock-follow-list__item'>
-          <Text className="stock-follow-list__item-code g-font-bold">股票编码</Text>
-          <Text className="stock-follow-list__item-name g-font-bold">股票名称</Text>
-        </View>
-        {
-          this.state.list.map(item => {
-            return (
-              <View className='stock-follow-list__item' key={item.stockId} onClick={this.handleClick.bind(this, item)}>
-                <Text className="stock-follow-list__item-code">{item.stockCode}</Text>
-                <Text className="stock-follow-list__item-name">{item.stockName}</Text>
-                <Text className="stock-follow-list__item-icon">></Text>
-              </View>
-            )
-          })
-        }
+      <View>
+        {this.state.needAuth ? <Auth onAuthSuccess={this.authSucess}/> : "加载中..."}
       </View>
     )
   }

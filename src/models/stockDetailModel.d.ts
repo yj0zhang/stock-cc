@@ -1,0 +1,3 @@
+interface IStockDetail {
+  name: string
+}

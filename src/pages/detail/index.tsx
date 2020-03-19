@@ -7,27 +7,15 @@ import { fetchDetail, fetchRealTimeData, fetchOffLineData } from "@/api/stock";
 
 import ButtonTab from "@/components/ButtonTab"
 
-interface PollingInterface {
-  restart: Function,
-  startPolling: Function,
-  stopPolling: Function
-}
-interface btn {
-  id: Number,
-  name: String
-}
+import "./detail.scss"
 
 interface IProps {}
 
-interface StockDetail {
-  name?: String
-}
-
 interface IState {
-  detail: StockDetail,
+  detail: IStockDetail,
   offlineConfig: Object,
   realtimeConfig: Object,
-  buttonList: Array<btn>,
+  buttonList: Array<IButtonTabBtn>,
   active: Number,
   realTimePolling: PollingInterface,
   chartsDataReady: Boolean
@@ -41,7 +29,9 @@ export default class Index extends Component<IProps, IState> {
   constructor(props) {
     super(props);
     this.state = {
-      detail: {},
+      detail: {
+        name: ""
+      },
       offlineConfig: {},
       realtimeConfig: {},
       buttonList: [
@@ -140,8 +130,9 @@ export default class Index extends Component<IProps, IState> {
 
   render () {
     return (
-      <View className='index'>
+      <View className='stock-detail'>
         <Text >{this.state.detail.name}</Text>
+        <ButtonTab buttonList={this.state.buttonList} active={this.state.active} activeChange={this.activeChange.bind(this)}></ButtonTab>
         {this.state.active === realtime && this.state.chartsDataReady ?
           (<Echart style={'height: 600px'} option={this.state.realtimeConfig}/>):
           null
@@ -150,7 +141,6 @@ export default class Index extends Component<IProps, IState> {
           (<Echart ref="offlineRef" style={'height: 600px'} option={this.state.offlineConfig}/>):
           null
         }
-        <ButtonTab buttonList={this.state.buttonList} active={this.state.active} activeChange={this.activeChange.bind(this)}></ButtonTab>
       </View>
     )
   }

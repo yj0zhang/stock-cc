@@ -3,13 +3,8 @@ import { View, Button, Text } from "@tarojs/components";
 
 import "./ButtonTab.scss"
 
-interface btn {
-  id: Number,
-  name: String
-}
-
 interface IProps {
-  buttonList: Array<btn>,
+  buttonList: Array<IButtonTabBtn>,
   active: Number,
   activeChange: Function
 }

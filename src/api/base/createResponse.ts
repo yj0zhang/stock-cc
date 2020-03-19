@@ -3,7 +3,6 @@ import Exception from '../../shared/Exception';
 import ERR_TYPES from '../../shared/ERR_TYPES';
 
 export default function createResponse(res) {
-  console.log('res', res);
   let response: any = null;
   const statusCode = res.statusCode;
 
