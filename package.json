@@ -43,7 +43,6 @@
     "@tarojs/taro-weapp": "2.0.6",
     "babel-runtime": "^6.26.0",
     "date-fns": "^2.10.0",
-    "echarts12": "^1.1.6",
     "keymirror": "^0.1.1",
     "lodash": "^4.17.15",
     "nerv-devtools": "^1.5.5",

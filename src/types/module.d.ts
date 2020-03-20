@@ -13,6 +13,7 @@ declare module "*/models/UserModel"
 declare module "*/components/LineCharts"
 declare module "*/components/ButtonTab"
 declare module "*/components/Auth"
+declare module "*/components/echart"
 
 /** shared module */
 declare module "*/shared/utils/is"

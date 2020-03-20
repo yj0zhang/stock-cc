@@ -1,7 +1,7 @@
 import PollingService from "@/lib/polling";
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
-import { Echart } from 'echarts12'
+import { Echart } from '@/components/echart'
 import { realTimeLineOptions, offlineOptions } from "@/service/echartsOptionService"
 import { fetchDetail, fetchRealTimeData, fetchOffLineData } from "@/api/stock";
 
@@ -18,7 +18,8 @@ interface IState {
   buttonList: Array<IButtonTabBtn>,
   active: Number,
   realTimePolling: PollingInterface,
-  chartsDataReady: Boolean
+  chartsDataReady: Boolean,
+  coordRange: any
 }
 
 const realtime = 1, offline = 2
@@ -40,7 +41,8 @@ export default class Index extends Component<IProps, IState> {
       ],
       active: offline,
       realTimePolling: new PollingService(10, () => {}),
-      chartsDataReady: false
+      chartsDataReady: false,
+      coordRange: []
     }
   }
 
@@ -85,9 +87,11 @@ export default class Index extends Component<IProps, IState> {
   getOffLineData() {
     fetchOffLineData(this.id).then(
       ({data}) => {
+        let offlineData = offlineOptions(data.lineNode)
         this.setState({
-          offlineConfig: offlineOptions(data.lineNode),
-          chartsDataReady: this.state.active === offline
+          offlineConfig: offlineData.options,
+          chartsDataReady: this.state.active === offline,
+          coordRange: offlineData.coordRange
         })
       }
     )
@@ -113,8 +117,17 @@ export default class Index extends Component<IProps, IState> {
     }
   }
 
-  offlineRef: () => {
-    debugger
+  onOfflineInit(chart) {
+    chart.dispatchAction({
+      type: 'brush',
+      areas: [
+          {
+              brushType: 'lineX',
+              coordRange: this.state.coordRange,
+              xAxisIndex: 0
+          }
+      ]
+  })
   }
 
   /**
@@ -134,11 +147,11 @@ export default class Index extends Component<IProps, IState> {
         <Text >{this.state.detail.name}</Text>
         <ButtonTab buttonList={this.state.buttonList} active={this.state.active} activeChange={this.activeChange.bind(this)}></ButtonTab>
         {this.state.active === realtime && this.state.chartsDataReady ?
-          (<Echart style={'height: 600px'} option={this.state.realtimeConfig}/>):
+          (<Echart style={'height: 80vh'} option={this.state.realtimeConfig}/>):
           null
         }
         {this.state.active === offline && this.state.chartsDataReady ?
-          (<Echart ref="offlineRef" style={'height: 600px'} option={this.state.offlineConfig}/>):
+          (<Echart onInit={this.onOfflineInit.bind(this)} style={'height: 90vh'} option={this.state.offlineConfig}/>):
           null
         }
       </View>

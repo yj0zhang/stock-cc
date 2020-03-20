@@ -50,6 +50,11 @@ export default function fetch(options: IApiOption) {
         //   return;
         // }
 
+        Taro.showToast({
+          title: "接口错误，刷新试试",
+          icon: "none",
+          duration: 2000
+        })
         rej(e);
       });
     })
