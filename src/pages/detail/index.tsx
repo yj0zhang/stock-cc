@@ -49,7 +49,7 @@ export default class Index extends Component<IProps, IState> {
   componentWillMount () {
     this.setState({
       realTimePolling: new PollingService(
-        10 * 1000,
+        30 * 1000,
         () => { return fetchRealTimeData(this.id) },
         this.updateRealTimeData.bind(this),
         err => { console.log(err) }
