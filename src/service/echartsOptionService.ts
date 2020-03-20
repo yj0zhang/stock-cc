@@ -144,11 +144,11 @@ const offlineOptions = (lineData: Array<IlineNode>) => {
     options: {
       backgroundColor: '#fff',
       animation: false,
-      legend: {
-          bottom: 10,
-          left: 'center',
-          data: ['Dow-Jones index', 'MA5', 'MA10', 'MA20', 'MA30']
-      },
+      // legend: {
+      //     bottom: 10,
+      //     left: 'center',
+      //     data: ['Dow-Jones index', 'MA5', 'MA10', 'MA20', 'MA30']
+      // },
       tooltip: {
           trigger: 'axis',
           axisPointer: {
