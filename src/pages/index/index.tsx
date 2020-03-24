@@ -21,24 +21,27 @@ export default class Index extends Component<IProps, IState> {
     super(props);
     this.state = {
       list: [],
-      needAuth: true
+      needAuth: false
     }
   }
 
   async componentWillMount () {
+    Taro.navigateTo({
+      url: '/pages/list/index'
+    })
     //不能直接要求用户授权，必须要先使用小程序之后，才能授权，否则审核不通过
     //确保用户已登录
-    await userInfo.ensureLogin()
+    // await userInfo.ensureLogin()
 
-    this.setState({
-      needAuth: !userInfo.getAuthState()
-    }, () => {
-      if (!this.state.needAuth) {
-        Taro.navigateTo({
-          url: '/pages/list/index'
-        })
-      }
-    })
+    // this.setState({
+    //   needAuth: !userInfo.getAuthState()
+    // }, () => {
+    //   if (!this.state.needAuth) {
+    //     Taro.navigateTo({
+    //       url: '/pages/list/index'
+    //     })
+    //   }
+    // })
 
   }
 
@@ -73,13 +76,13 @@ export default class Index extends Component<IProps, IState> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    navigationBarTitleText: '授权'
+    navigationBarTitleText: '首页'
   }
 
   render () {
     return (
       <View>
-        {this.state.needAuth ? <Auth onAuthSuccess={this.authSucess}/> : "已授权，正在跳转..."}
+        {this.state.needAuth ? <Auth onAuthSuccess={this.authSucess}/> : "正在跳转..."}
       </View>
     )
   }
