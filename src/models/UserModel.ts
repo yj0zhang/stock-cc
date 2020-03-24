@@ -42,7 +42,7 @@ export default class UserModel {
       try {
         await this.checkSession()
         this.setLoginState(true)
-        this.setAuthState(true)
+        // this.setAuthState(true)
         resolve()
       } catch (error) {
         try {
