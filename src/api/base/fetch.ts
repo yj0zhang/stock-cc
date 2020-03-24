@@ -51,7 +51,7 @@ export default function fetch(options: IApiOption) {
         // }
 
         Taro.showToast({
-          title: "接口错误，刷新试试",
+          title: e.message || "接口错误，请重试",
           icon: "none",
           duration: 2000
         })

@@ -1,0 +1,101 @@
+
+/*
+
+https://gist.github.com/jacurtis/30da4bf9a6c9b9b5cc0aebac512ca7c9
+
+下面会生成：
+
+// m 代表margin, x 代表 x轴, 所以 mx 代表 margin-left 和 margin-right。
+
+.g-mx-14 {
+	margin-left: 14px;
+	margin-right: 14px;
+}
+
+.g-m-14 {
+	margin: 14px;
+}
+
+.g-mt-14 {
+	margin-top: 14px;
+}
+
+.g-p-14 {
+	padding: 14px;
+}
+
+.g-pt-14 {
+	padding-top: 14px;
+}
+
+// 等等
+
+*/
+
+// 在这里添加 space.
+$spaceamounts: (
+	0, 2, 4, 6, 8, 10,
+	12, 14, 16, 18, 20, 24,
+	28, 30, 36, 40, 45, 50,
+	56, 60, 70, 80, 100, 150, 180
+);
+$sides: (top, bottom, left, right, all, hor, ver);
+
+@each $space in $spaceamounts {
+	@each $side in $sides {
+
+		@if $side == 'all' {
+			.g-m-#{$space} {
+				margin: #{$space}px !important;
+			}
+
+			.g-p-#{$space} {
+				padding: #{$space}px !important;
+			}
+
+			.g-lh-#{$space} {
+				line-height: #{$space}px!important;
+			}
+		} @else if $side == 'hor' {
+			.g-mx-#{$space} {
+				margin-left: #{$space}px !important;
+				margin-right: #{$space}px !important;
+			}
+
+			.g-px-#{$space} {
+				padding-left: #{$space}px !important;
+				padding-right: #{$space}px !important;
+			}
+		} @else if $side == 'ver' {
+			.g-my-#{$space} {
+				margin-top: #{$space}px !important;
+				margin-bottom: #{$space}px !important;
+			}
+
+			.g-py-#{$space} {
+				padding-top: #{$space}px !important;
+				padding-bottom: #{$space}px !important;
+			}
+		} @else {
+			.g-m#{str-slice($side, 0, 1)}-#{$space} {
+				margin-#{$side}: #{$space}px !important;
+			}
+
+			.g-p#{str-slice($side, 0, 1)}-#{$space} {
+				padding-#{$side}: #{$space}px !important;
+			}
+		}
+	}
+}
+
+.g-mx-auto {
+	margin: 0 auto;
+}
+
+.g-ml-auto {
+	margin-left: auto;
+}
+
+.g-mr-auto {
+	margin-right: auto;
+}

@@ -5,7 +5,7 @@ import { Echart } from '@/components/echart'
 import { realTimeLineOptions, offlineOptions } from "@/service/echartsOptionService"
 import { fetchDetail, fetchRealTimeData, fetchOffLineData } from "@/api/stock";
 
-import ButtonTab from "@/components/ButtonTab"
+import { AtTabs, AtTabsPane } from 'taro-ui'
 
 import "./detail.scss"
 
@@ -15,11 +15,12 @@ interface IState {
   detail: IStockDetail,
   offlineConfig: Object,
   realtimeConfig: Object,
-  buttonList: Array<IButtonTabBtn>,
-  active: Number,
+  buttonList: any,
+  active: number,
   realTimePolling: PollingInterface,
   chartsDataReady: Boolean,
-  coordRange: any
+  coordRange: any,
+  currentTab: number
 }
 
 const realtime = 1, offline = 2
@@ -36,10 +37,11 @@ export default class Index extends Component<IProps, IState> {
       offlineConfig: {},
       realtimeConfig: {},
       buttonList: [
-        {id: realtime, name: "实时"},
-        {id: offline, name: "离线"},
+        {id: realtime, title: "实时"},
+        {id: offline, title: "离线"},
       ],
       active: offline,
+      currentTab: 1,
       realTimePolling: new PollingService(10, () => {}),
       chartsDataReady: false,
       coordRange: []
@@ -104,10 +106,13 @@ export default class Index extends Component<IProps, IState> {
     })
   }
 
-  activeChange(type) {
+  activeChange(val) {
+    const type = this.state.buttonList[val]
+    console.log(type, val)
     this.setState({
       chartsDataReady: false,
-      active: type.id
+      active: type.id,
+      currentTab: val
     })
     if (type.id === realtime) {
       this.state.realTimePolling.startPolling()
@@ -127,7 +132,13 @@ export default class Index extends Component<IProps, IState> {
               xAxisIndex: 0
           }
       ]
-  })
+    })
+  }
+
+  handleClick (value) {
+    this.setState({
+      active: value
+    })
   }
 
   /**
@@ -145,7 +156,16 @@ export default class Index extends Component<IProps, IState> {
     return (
       <View className='stock-detail'>
         <Text >{this.state.detail.name}</Text>
-        <ButtonTab buttonList={this.state.buttonList} active={this.state.active} activeChange={this.activeChange.bind(this)}></ButtonTab>
+        <AtTabs current={this.state.currentTab} tabList={this.state.buttonList} onClick={this.activeChange.bind(this)}>
+          {
+            this.state.buttonList.map((btn, index) => {
+              return (
+                <AtTabsPane current={this.state.currentTab} index={index} >
+                </AtTabsPane>
+              )
+            })
+          }
+        </AtTabs>
         {this.state.active === realtime && this.state.chartsDataReady ?
           (<Echart style={'height: 80vh'} option={this.state.realtimeConfig}/>):
           null

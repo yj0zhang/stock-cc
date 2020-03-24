@@ -1,1 +1,8 @@
-@import "~@/styles/util"
+@import "~@/styles/util";
+@import "~@/styles/unit";
+
+@import "~taro-ui/dist/style/components/button.scss";
+@import "~taro-ui/dist/style/components/loading.scss";
+@import "~taro-ui/dist/style/components/list.scss";
+@import "~taro-ui/dist/style/components/icon.scss";
+@import "~taro-ui/dist/style/components/tabs.scss";
