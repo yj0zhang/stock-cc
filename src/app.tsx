@@ -28,16 +28,35 @@ class App extends Component {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
+    // 'pages/index/index',
+      // 'pages/detail/index',
     pages: [
+      'pages/marketQuotations/index',
       'pages/list/index',
-      'pages/index/index',
       'pages/detail/index'
     ],
     window: {
       backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#6190e8',
+      navigationBarBackgroundColor: '#d81e06',
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'white'
+    },
+    tabBar: {
+      selectedColor: "#d81e06",
+      list: [
+        {
+          pagePath: "pages/marketQuotations/index",
+          text: "行情",
+          iconPath: "assets/images/hangqing.png",
+          selectedIconPath: "assets/images/hangqing-active.png"
+        },
+        {
+          pagePath: "pages/list/index",
+          text: "自选",
+          iconPath: "assets/images/guanzhu.png",
+          selectedIconPath: "assets/images/guanzhu-active.png"
+        }
+      ]
     }
   }
 

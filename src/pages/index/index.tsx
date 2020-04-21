@@ -8,14 +8,12 @@ import { saveUserInfo } from "@/api/user"
 
 const userInfo = new UserModel()
 
-interface IProps {}
-
 interface IState {
   list: Array<IStock>
   needAuth: Boolean
 }
 
-export default class Index extends Component<IProps, IState> {
+export default class Index extends Component<voidProps, IState> {
 
   constructor(props) {
     super(props);
@@ -79,9 +77,11 @@ export default class Index extends Component<IProps, IState> {
     navigationBarTitleText: '首页'
   }
 
+  externalClasses: ["appIndex"]
+
   render () {
     return (
-      <View>
+      <View className="appIndex">
         {this.state.needAuth ? <Auth onAuthSuccess={this.authSucess}/> : "正在跳转..."}
       </View>
     )

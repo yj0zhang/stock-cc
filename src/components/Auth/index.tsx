@@ -12,9 +12,11 @@ export default class Auth extends Component<IProps> {
     super(props)
   }
 
+  externalClasses: ['Auth', 'scope-auth-button']
+
   render() {
     return (
-      <View>
+      <View className="Auth">
         <View className="g-text-center g-my-40">stock 需要您的授权</View>
         <AtButton className="g-mx-100 scope-auth-button" type='primary' openType="getUserInfo" onGetUserInfo={this.props.onAuthSuccess}>授权</AtButton>
       </View>

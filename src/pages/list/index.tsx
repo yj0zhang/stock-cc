@@ -7,13 +7,11 @@ import { AtList, AtListItem } from "taro-ui"
 
 import './list.scss'
 
-interface IProps {}
-
 interface IState {
   list: Array<IStock>
 }
 
-export default class Index extends Component<IProps, IState> {
+export default class Index extends Component<voidProps, IState> {
 
   constructor(props) {
     super(props);

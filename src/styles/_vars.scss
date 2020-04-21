@@ -1,0 +1,26 @@
+$fontPrimary: 32px;
+$fontMedium: $fontPrimary * 0.875; // 28px
+$fontSmall: $fontPrimary * 0.8125; // 26px
+$fontXSmall: $fontPrimary * 0.75; // 24px
+
+$fontLarge: $fontPrimary * 1.125; // 36px
+$fontXLarge: $fontPrimary * 1.25; // 40px
+$fontXXLarge: $fontPrimary * 1.5; // 48px
+$fontXXXLarge: $fontPrimary * 1.875; // 60px
+
+$clr_white: #fff;
+
+$colorPrimaryText: #101010;
+$colorRegularText: #666;
+$colorSecondaryText: #666;
+$colorPlaceholder: #cdcfd5;
+
+$colorBackgroundGray: #f7f7f7;
+
+$colorSuccess: #13ce66;
+$colorWarning: #FFBA00;
+$colorDanger: #d81e06;
+$colorInfo: #B8C1CF;
+
+$borderColorLight: #dfe4ed;
+$borderColorLighter: #e6ebf5;

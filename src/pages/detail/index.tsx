@@ -9,8 +9,6 @@ import { AtTabs, AtTabsPane } from 'taro-ui'
 
 import "./detail.scss"
 
-interface IProps {}
-
 interface IState {
   detail: IStockDetail,
   offlineConfig: Object,
@@ -25,7 +23,7 @@ interface IState {
 
 const realtime = 1, offline = 2
 
-export default class Index extends Component<IProps, IState> {
+export default class Index extends Component<voidProps, IState> {
 
   id = (this.$router.params || {}).id || 0
   constructor(props) {

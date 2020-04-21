@@ -7,10 +7,9 @@ interface IApiOption {
 
 /** components */
 
-interface IButtonTabBtn {
-  id: Number,
-  name: String
-}
+interface voidProps {}
+
+interface voidState {}
 
 /** polling service */
 interface PollingInterface {

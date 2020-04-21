@@ -1,0 +1,18 @@
+@import "~@/styles/vars";
+@import "~@/styles/unit";
+@import "~@/styles/flex-table";
+
+.RankingList {
+  background-color: $clr_white;
+  &__sort-type {
+    display: flex;
+    justify-content: space-around;
+  }
+  &__list {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__table-title {
+    color: $colorPlaceholder;
+  }
+}

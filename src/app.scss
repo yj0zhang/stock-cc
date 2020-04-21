@@ -1,8 +1,15 @@
 @import "~@/styles/util";
 @import "~@/styles/unit";
+@import "~@/styles/vars";
+@import "~@/styles/zindex";
 
 @import "~taro-ui/dist/style/components/button.scss";
 @import "~taro-ui/dist/style/components/loading.scss";
 @import "~taro-ui/dist/style/components/list.scss";
 @import "~taro-ui/dist/style/components/icon.scss";
 @import "~taro-ui/dist/style/components/tabs.scss";
+@import "~taro-ui/dist/style/components/card.scss";
+
+view, text, div, p, section, span {
+  color: $colorPrimaryText;
+}

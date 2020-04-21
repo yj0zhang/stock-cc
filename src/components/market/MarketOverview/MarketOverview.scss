@@ -1,0 +1,30 @@
+@import "~@/styles/vars";
+@import "~@/styles/unit";
+
+.MarketOverview {
+  background-color: $clr_white;
+  &__list {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__card {
+    border-radius: 8px;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+    text-align: center;
+    &-name {
+      font-size: $fontPrimary;
+    }
+    &-up {
+      color: $colorDanger;
+      font-size: $fontPrimary;
+    }
+    &-down {
+      color: $colorSuccess;
+      font-size: $fontPrimary;
+    }
+    &-title {
+      font-size: $fontMedium;
+      color: $colorRegularText;
+    }
+  }
+}

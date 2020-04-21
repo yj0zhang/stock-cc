@@ -1,20 +1,15 @@
 /** api module */
-declare module "*/api/stock"
-declare module "*/api/user"
+declare module "@/api/*"
 
 /** lib module */
-declare module "*/lib/polling"
+declare module "@/lib/*"
 
 /** service module */
-declare module "*/service/echartsOptionService"
-declare module "*/models/UserModel"
+declare module "@/service/*"
+declare module "@/models/*"
 
 /** component module */
-declare module "*/components/LineCharts"
-declare module "*/components/ButtonTab"
-declare module "*/components/Auth"
-declare module "*/components/echart"
+declare module "@/components/*"
 
 /** shared module */
-declare module "*/shared/utils/is"
-declare module "*/shared"
+declare module "@/shared/*"
