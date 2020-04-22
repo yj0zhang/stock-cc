@@ -2,10 +2,10 @@
 import getAttr from '../../shared/getAttr';
 
 interface IResponse {
-  data?: any,
-  raw: Object,
-  code?: number,
-  message?: string
+  data?: any;
+  raw: object;
+  code?: number;
+  message?: string;
 }
 export default class Response implements IResponse {
   raw_: any

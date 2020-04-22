@@ -9,8 +9,8 @@ import { saveUserInfo } from "@/api/user"
 const userInfo = new UserModel()
 
 interface IState {
-  list: Array<IStock>
-  needAuth: Boolean
+  list: Array<IStock>;
+  needAuth: boolean;
 }
 
 export default class Index extends Component<voidProps, IState> {

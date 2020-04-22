@@ -1,8 +1,8 @@
 
 interface _polling_status_ {
-  pending: Number,
-  processing: Number,
-  stop: Number,
+  pending: number;
+  processing: number;
+  stop: number;
 }
 
 const pollingStatus: _polling_status_ = {
@@ -16,7 +16,7 @@ export default class PollingService implements PollingInterface {
   task: Function
   _errCb: Function
   _cb: Function
-  _status: Number
+  _status: number
   _taskId: number
   _pollingStatus: _polling_status_
   constructor(

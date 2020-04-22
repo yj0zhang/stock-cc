@@ -5,8 +5,8 @@ import { AtButton } from 'taro-ui'
 import "./RankingList.scss"
 
 interface IState {
-  sortTypes: Array<any>,
-  list: Array<any>
+  sortTypes: Array<any>;
+  list: Array<any>;
 }
 
 export class RankingList extends Component<voidProps, IState> {

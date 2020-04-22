@@ -10,15 +10,15 @@ import { AtTabs, AtTabsPane } from 'taro-ui'
 import "./detail.scss"
 
 interface IState {
-  detail: IStockDetail,
-  offlineConfig: Object,
-  realtimeConfig: Object,
-  buttonList: any,
-  active: number,
-  realTimePolling: PollingInterface,
-  chartsDataReady: Boolean,
-  coordRange: any,
-  currentTab: number
+  detail: IStockDetail;
+  offlineConfig: object;
+  realtimeConfig: object;
+  buttonList: any;
+  active: number;
+  realTimePolling: PollingInterface;
+  chartsDataReady: boolean;
+  coordRange: any;
+  currentTab: number;
 }
 
 const realtime = 1, offline = 2

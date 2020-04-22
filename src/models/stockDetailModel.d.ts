@@ -1,3 +1,0 @@
-interface IStockDetail {
-  name: string
-}

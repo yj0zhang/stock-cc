@@ -5,7 +5,7 @@ import { AtButton } from 'taro-ui'
 import "./Auth.scss"
 
 interface IProps {
-  onAuthSuccess: any
+  onAuthSuccess: any;
 }
 export default class Auth extends Component<IProps> {
   constructor(props:IProps) {

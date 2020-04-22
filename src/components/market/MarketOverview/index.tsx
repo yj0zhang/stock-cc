@@ -4,12 +4,12 @@ import { View, Text } from "@tarojs/components";
 import "./MarketOverview.scss"
 
 interface IState {
-  up: number,
-  down: number,
-  topRate: number,
-  topName: string,
-  hotRate: number,
-  hotName: string
+  up: number;
+  down: number;
+  topRate: number;
+  topName: string;
+  hotRate: number;
+  hotName: string;
 }
 
 export class MarketOverview extends Component<voidProps, IState> {
