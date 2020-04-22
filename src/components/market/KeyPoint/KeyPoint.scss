@@ -9,26 +9,24 @@
   }
   &__tip {
     color: $colorPlaceholder;
-    font-size: $fontMedium;
   }
   &__card {
+    box-shadow: 0 2px 12px 0 $boxShadowLight;
     border-radius: 8px;
-    background: linear-gradient(360deg, rgba(233,225,227,0.9808298319327731) 0%, rgba(0,224,255,0) 100%);
+    background: linear-gradient(360deg, $colorBackgroundPink 0%, $clr_white 100%);
     &-name {
       color: $colorDanger;
-      font-size: $fontPrimary;
     }
     &-num {
       color: $colorDanger;
-      font-size: $fontPrimary;
     }
     &-gap {
       color: $colorDanger;
-      font-size: $fontMedium;
+      font-size: $fontSmall;
     }
     &-gap-rate {
       color: $colorDanger;
-      font-size: $fontMedium;
+      font-size: $fontSmall;
     }
   }
 }

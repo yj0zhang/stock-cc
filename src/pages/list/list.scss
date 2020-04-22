@@ -1,9 +1,11 @@
+@import "~@/styles/vars";
+
 .stock-follow-list {
   &__item {
     padding: 14px 20px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid $borderColorLight;
     &:first-child {
-      border-top: 1px solid #ccc;
+      border-top: 1px solid $borderColorLight;
     }
     & text {
       margin-right: 16px;
@@ -14,7 +16,7 @@
       display: inline-block;
     }
     &-icon {
-      color: #ccc;
+      color: $borderColorLight;
     }
   }
 }

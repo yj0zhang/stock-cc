@@ -50,11 +50,11 @@ export class KeyPoint extends Component<voidProps, IState> {
           {
             this.state.list.map(item => {
               return (
-                <View className="KeyPoint__card g-p-16">
+                <View className="KeyPoint__card g-p-12 g-text-center">
                   <View className="KeyPoint__card-name">{item.name}</View>
                   <View className="KeyPoint__card-num">{item.currentNum}</View>
                   <View>
-                    <Text className="g-mr-10 KeyPoint__card-gap">{item.gap > 0 ? `+${item.gap}` : item.gap}</Text>
+                    <Text className="g-mr-8 KeyPoint__card-gap">{item.gap > 0 ? `+${item.gap}` : item.gap}</Text>
                     <Text className="KeyPoint__card-gap-rate">{item.gapRate > 0 ? `+${item.gapRate}%` : `${item.gapRate}%`}</Text>
                   </View>
                 </View>

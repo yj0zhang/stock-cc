@@ -28,6 +28,13 @@ export class RankingList extends Component<voidProps, IState> {
     console.log(type)
   }
 
+  gotoDetail(stock) {
+    Taro.navigateTo({
+      url: `/pages/detail/index?id=${stock.stockId}`
+    })
+  }
+
+
   externalClasses: ['RankingList']
 
   render() {
@@ -50,7 +57,7 @@ export class RankingList extends Component<voidProps, IState> {
           </View>
           {this.state.list.map(item => {
             return (
-              <View className="flex-cell flex-row">
+              <View className="flex-cell flex-row" onClick={this.gotoDetail.bind(this, item)}>
                 <Text className="flex-cell flex-row">{item.name}</Text>
                 <Text className="flex-cell flex-row">{item.curr}</Text>
                 <Text className="flex-cell flex-row">{item.upRate}%</Text>

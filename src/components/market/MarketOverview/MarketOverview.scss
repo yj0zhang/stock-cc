@@ -9,21 +9,16 @@
   }
   &__card {
     border-radius: 8px;
-    box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+    box-shadow: 0 2px 12px 0 $borderColorLighter;
     text-align: center;
-    &-name {
-      font-size: $fontPrimary;
-    }
     &-up {
       color: $colorDanger;
-      font-size: $fontPrimary;
     }
     &-down {
       color: $colorSuccess;
-      font-size: $fontPrimary;
     }
     &-title {
-      font-size: $fontMedium;
+      font-size: $fontSmall;
       color: $colorRegularText;
     }
   }
