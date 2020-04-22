@@ -11,9 +11,17 @@
     color: $colorPlaceholder;
   }
   &__card {
+    flex: 1;
+    margin: 10px;
     box-shadow: 0 2px 12px 0 $boxShadowLight;
     border-radius: 8px;
     background: linear-gradient(360deg, $colorBackgroundPink 0%, $clr_white 100%);
+    &:first-child {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
     &-name {
       color: $colorDanger;
     }

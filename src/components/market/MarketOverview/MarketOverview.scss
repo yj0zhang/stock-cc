@@ -1,5 +1,6 @@
 @import "~@/styles/vars";
 @import "~@/styles/unit";
+@import "~@/styles/util";
 
 .MarketOverview {
   background-color: $clr_white;
@@ -8,14 +9,16 @@
     justify-content: space-between;
   }
   &__card {
+    flex: 1;
+    margin: 10px;
     border-radius: 8px;
     box-shadow: 0 2px 12px 0 $borderColorLighter;
     text-align: center;
-    &-up {
-      color: $colorDanger;
+    &:first-child {
+      margin-left: 0;
     }
-    &-down {
-      color: $colorSuccess;
+    &:last-child {
+      margin-right: 0;
     }
     &-title {
       font-size: $fontSmall;
