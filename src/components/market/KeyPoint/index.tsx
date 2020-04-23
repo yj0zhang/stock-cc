@@ -7,16 +7,12 @@ import "./KeyPoint.scss"
 
 interface IState {
   list: Array<KeyPointClass>;
-  stateDesc: string;
-  stateText: string;
 }
 export class KeyPoint extends Component<voidProps, IState> {
   constructor() {
     super()
     this.state = {
-      list: [],
-      stateDesc: "kkkk",
-      stateText: "已收盘"
+      list: []
     }
   }
 
@@ -41,8 +37,6 @@ export class KeyPoint extends Component<voidProps, IState> {
     return (
       <View className="KeyPoint g-p-40 g-mb-40">
         <View className="g-py-20">
-          {/* <View>{this.state.stateText}</View> */}
-          {/* <View className="KeyPoint__tip">{this.state.stateDesc}</View> */}
           <View>A股-沪深</View>
         </View>
         <View className="KeyPoint__list">
@@ -51,10 +45,11 @@ export class KeyPoint extends Component<voidProps, IState> {
               return (
                 <View className="KeyPoint__card g-p-12 g-text-center">
                   <View className="KeyPoint__card-name">{item.stockName}</View>
-                  <View className="KeyPoint__card-num">{item.currentPrice}</View>
+                  <View className="KeyPoint__card-num g-up">{item.currentPrice}</View>
                   <View>
-                    <Text className="g-mr-8 KeyPoint__card-gap">{item.gap() > 0 ? `+${item.gap()}` : item.gap()}</Text>
-                    <Text className="KeyPoint__card-gap-rate">{item.gapRate() > 0 ? `+${item.gapRate()}%` : `${item.gapRate()}%`}</Text>
+                    <Text className={item.gap() > 0 ? "g-mr-8 g-font-small g-up" : item.gap() === 0 ? "g-mr-8 g-font-small" : "g-mr-8 g-font-small g-down"}>{item.gap() > 0 ? `+${item.gap()}` : item.gap()}</Text>
+                    {/* <Text className="g-mr-8 g-font-small">{item.gap() > 0 ? `+${item.gap()}` : item.gap()}</Text> */}
+                    <Text className={item.gapRate() > 0 ? "g-font-small g-up" : item.gapRate() === 0 ? "g-font-small" : "g-font-small g-down"}>{item.gapRate() > 0 ? `+${item.gapRate()}%` : `${item.gapRate()}%`}</Text>
                   </View>
                 </View>
               )

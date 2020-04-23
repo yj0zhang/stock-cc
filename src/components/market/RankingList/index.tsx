@@ -93,6 +93,13 @@ export class RankingList extends Component<voidProps, IState> {
     })
   }
 
+  getClass(num: number) {
+    let klass = "g-flex-cell g-flex-row";
+    klass += num > 0 ? " g-up" : num === 0 ? "" : " g-down"
+
+    return klass
+  }
+
 
   externalClasses: ['RankingList']
 
@@ -111,7 +118,7 @@ export class RankingList extends Component<voidProps, IState> {
         </View>
         <View className="RankingList__table g-py-20 g-flex-column g-flex-column--row-border">
           <View className="g-flex-cell g-flex-row">
-            <Text className="g-flex-cell g-flex-row RankingList__table-title">展开分析</Text>
+            <Text className="g-flex-cell g-flex-row RankingList__table-title">股票</Text>
             <Text className="g-flex-cell g-flex-row RankingList__table-title">涨幅</Text>
             <Text className="g-flex-cell g-flex-row RankingList__table-title">波动</Text>
             <Text className="g-flex-cell g-flex-row RankingList__table-title">成交量</Text>
@@ -124,10 +131,10 @@ export class RankingList extends Component<voidProps, IState> {
                   <Text className="g-flex-cell g-flex-row">{item.stockName}</Text>
                   <Text className="RankingList__item-code g-flex-cell g-flex-row">{item.stockCode}</Text>
                 </Text>
-                <Text className="g-flex-cell g-flex-row">{item.uptickRate}%</Text>
-                <Text className="g-flex-cell g-flex-row">{item.surgeRate}%</Text>
-                <Text className="g-flex-cell g-flex-row">{item.dealNum}</Text>
-                <Text className="g-flex-cell g-flex-row">{item.dealMoney}</Text>
+                <Text className={this.getClass(item.uptickRate)}>{item.uptickRate}%</Text>
+                <Text className={this.getClass(item.surgeRate)}>{item.surgeRate}%</Text>
+                <Text className={this.getClass(item.dealNum)}>{item.dealNum}</Text>
+                <Text className={this.getClass(item.dealMoney)}>{item.dealMoney}</Text>
               </View>
             )
           })}

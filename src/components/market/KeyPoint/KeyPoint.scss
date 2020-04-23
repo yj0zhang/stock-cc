@@ -1,5 +1,6 @@
 @import "~@/styles/vars";
 @import "~@/styles/unit";
+@import "~@/styles/util";
 
 .KeyPoint {
   background-color: $clr_white;
@@ -21,20 +22,6 @@
     }
     &:last-child {
       margin-right: 0;
-    }
-    &-name {
-      color: $colorSuccess;
-    }
-    &-num {
-      color: $colorSuccess;
-    }
-    &-gap {
-      color: $colorSuccess;
-      font-size: $fontSmall;
-    }
-    &-gap-rate {
-      color: $colorSuccess;
-      font-size: $fontSmall;
     }
   }
 }
