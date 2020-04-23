@@ -1,16 +1,31 @@
-.flex-row {
+@import "~@/styles/vars";
+
+.g-flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  > view {
+    padding: 10px;
+  }
+  &--row-border {
+    // border: 1px solid $borderColorLighter;
+    > view {
+      border-bottom: 1px solid $borderColorLighter;
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+.g-flex-row {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
-.flex-column {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: stretch;
-}
 
-.flex-cell {
+.g-flex-cell {
   flex: 1;
 }

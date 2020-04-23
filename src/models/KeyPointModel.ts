@@ -18,6 +18,6 @@ export default class KeyPointModel implements KeyPointClass {
   }
 
   gapRate() {
-    return ((this.currentPrice - this.yesterdayClosePrice) / this.yesterdayClosePrice).toFixed(2);
+    return ((this.currentPrice - this.yesterdayClosePrice) * 100 / this.yesterdayClosePrice).toFixed(2);
   }
 }

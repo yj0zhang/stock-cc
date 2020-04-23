@@ -2,11 +2,11 @@ interface IStockDetail {
   name: string;
 }
 
-interface IStock {
+interface IFollowStock {
   stockId: number;
   stockCode: string;
   stockName: string;
-  followTime: string;
+  followTime?: string;
 }
 
 interface IKeyObj {
@@ -25,4 +25,14 @@ declare class KeyPointClass implements IKeyObj {
   attrs: object;
   gap: Function;
   gapRate: Function;
+}
+
+declare class Stock implements IFollowStock {
+  stockId: number;
+  stockCode: string;
+  stockName: string;
+  uptickRate: number;
+  surgeRate: number;
+  dealNum: number;
+  dealMoney: number;
 }

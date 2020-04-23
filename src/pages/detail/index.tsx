@@ -87,7 +87,7 @@ export default class Index extends Component<voidProps, IState> {
   getOffLineData() {
     fetchOffLineData(this.id).then(
       ({data}) => {
-        let offlineData = offlineOptions(data.lineNode)
+        let offlineData = offlineOptions(data.lineNode || [])
         this.setState({
           offlineConfig: offlineData.options,
           chartsDataReady: this.state.active === offline,

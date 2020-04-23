@@ -10,7 +10,12 @@ function fetchMarketOverview() {
   return get("/stock/realtime/uptickRateStatistics")
 }
 
+function fetchRankList(params) {
+  return get("/stock/realtime/rank", {data: params})
+}
+
 export {
   fetchKeyPoint,
-  fetchMarketOverview
+  fetchMarketOverview,
+  fetchRankList
 }

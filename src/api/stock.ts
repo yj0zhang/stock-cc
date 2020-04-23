@@ -1,6 +1,8 @@
 import {
   get
 } from "./base/fetch";
+import { format } from "date-fns";
+import { getStartFromDay } from "@/shared/date";
 
 function fetchList() {
   return get("/stock/follow/list")
@@ -17,7 +19,9 @@ function fetchDetail(id) {
 function fetchOffLineData(id) {
   return get("/stock/offline/line", {
     data: {
-      stockId: id
+      stockId: id,
+      startDate: format(new Date(), "yyyy-MM-dd"),
+      endDate: format(getStartFromDay(new Date(), 180), "yyyy-MM-dd")
     }
   })
 }

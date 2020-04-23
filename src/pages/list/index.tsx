@@ -8,7 +8,7 @@ import { AtList, AtListItem } from "taro-ui"
 import './list.scss'
 
 interface IState {
-  list: Array<IStock>
+  list: Array<IFollowStock>
 }
 
 export default class Index extends Component<voidProps, IState> {
@@ -32,7 +32,7 @@ export default class Index extends Component<voidProps, IState> {
 
   componentDidHide () { }
 
-  handleClick(stock: IStock) {
+  handleClick(stock: IFollowStock) {
     Taro.navigateTo({
       url: `/pages/detail/index?id=${stock.stockId}`
     })

@@ -1,31 +1,90 @@
 import { Component } from "@tarojs/taro";
 import { View, Text } from "@tarojs/components";
-import { AtButton } from 'taro-ui'
+import { AtButton, AtLoadMore } from 'taro-ui';
+import { fetchRankList } from "@/api/marketQuotation";
+import { RangeStock } from "@/models/RangeStock";
 
 import "./RankingList.scss"
 
 interface IState {
   sortTypes: Array<any>;
   list: Array<any>;
+  sortField: string;
+  sortType: string;
+  pageSize: number;
+  pageNum: number;
+  listStatus: "more" | "loading" | "noMore" | undefined;
 }
+
+enum TypeDict {asc = "ASC", desc = "DESC"}
+
+enum FieldDict {uptickRate = "uptickRate", surgeRate = "surgeRate", dealNum = "dealNum", dealMoney = "dealMoney"}
+
+enum StatusDict {ready = "more", loading = "loading", nomore = "noMore"};
 
 export class RankingList extends Component<voidProps, IState> {
   constructor(props: voidProps) {
     super(props)
     this.state = {
+      listStatus: StatusDict.ready,
+      sortType: TypeDict.asc,
       sortTypes: [
-        { name: "涨幅榜", value: 1 },
-        { name: "跌幅榜", value: 2 },
-        { name: "快速涨幅", value: 3 },
-        { name: "成交额", value: 4 },
+        { name: "涨幅榜", value: FieldDict.uptickRate },
+        { name: "波动", value: FieldDict.surgeRate },
+        { name: "成交量", value: FieldDict.dealNum },
+        { name: "成交金额", value: FieldDict.dealMoney },
       ],
-      list: [
-        {name: "东方生物", typeText: "科创", code: 688298, curr: 40.21, upRate: 44.01, industry: "医疗器械服务"}
-      ]
+      pageSize: 20,
+      pageNum: 1,
+      sortField: FieldDict.uptickRate,
+      list: []
     }
   }
-  handleClick(type) {
+
+  componentWillMount() {
+    this.getRankList()
+  }
+
+  getNextPage() {
+    this.setState({
+      pageNum: this.state.pageNum + 1
+    }, () => {
+      this.getRankList()
+    })
+  }
+
+  getRankList() {
+    if (this.state.listStatus === StatusDict.loading) {
+      return
+    }
+    this.setState({
+      listStatus: StatusDict.loading
+    }, () => {
+      fetchRankList({
+        pageNum: this.state.pageNum,
+        pageSize: this.state.pageSize,
+        type: this.state.sortField,
+        sortType: this.state.sortType
+      }).then(
+        ({data_}) => {
+          this.setState({
+            list: this.state.list.concat(data_.map(item => new RangeStock(item))),
+            listStatus: data_ && data_.length === this.state.pageSize ? StatusDict.ready: StatusDict.nomore
+          })
+        }
+      )
+    })
+  }
+
+  getListByType(type) {
     console.log(type)
+    this.setState({
+      sortField: type.value,
+      pageNum: 1,
+      list: []
+    }, () => {
+      this.getRankList()
+    })
   }
 
   gotoDetail(stock) {
@@ -44,28 +103,39 @@ export class RankingList extends Component<voidProps, IState> {
         <View className="RankingList__sort-type">
           {this.state.sortTypes.map(sType => {
             return (
-            <AtButton onClick={this.handleClick.bind(this, sType)}>{sType.name}</AtButton>
-            )
-          })}
-        </View>
-        <View className="RankingList__table g-py-20 flex-column">
-          <View className="flex-cell flex-row">
-            <Text className="flex-cell flex-row RankingList__table-title">展开分析</Text>
-            <Text className="flex-cell flex-row RankingList__table-title">最新</Text>
-            <Text className="flex-cell flex-row RankingList__table-title">涨幅</Text>
-            <Text className="flex-cell flex-row RankingList__table-title">行业板块</Text>
-          </View>
-          {this.state.list.map(item => {
-            return (
-              <View className="flex-cell flex-row" onClick={this.gotoDetail.bind(this, item)}>
-                <Text className="flex-cell flex-row">{item.name}</Text>
-                <Text className="flex-cell flex-row">{item.curr}</Text>
-                <Text className="flex-cell flex-row">{item.upRate}%</Text>
-                <Text className="flex-cell flex-row">{item.industry}</Text>
+              <View className={this.state.sortField === sType.value ? "RankingList__sort-type--active": ""}>
+                <AtButton size='small' onClick={this.getListByType.bind(this, sType)}>{sType.name}</AtButton>
               </View>
             )
           })}
         </View>
+        <View className="RankingList__table g-py-20 g-flex-column g-flex-column--row-border">
+          <View className="g-flex-cell g-flex-row">
+            <Text className="g-flex-cell g-flex-row RankingList__table-title">展开分析</Text>
+            <Text className="g-flex-cell g-flex-row RankingList__table-title">涨幅</Text>
+            <Text className="g-flex-cell g-flex-row RankingList__table-title">波动</Text>
+            <Text className="g-flex-cell g-flex-row RankingList__table-title">成交量</Text>
+            <Text className="g-flex-cell g-flex-row RankingList__table-title">成交金额</Text>
+          </View>
+          {this.state.list.map(item => {
+            return (
+              <View className="g-flex-cell g-flex-row" onClick={this.gotoDetail.bind(this, item)}>
+                <Text className="g-flex-cell g-flex-row">
+                  <Text className="g-flex-cell g-flex-row">{item.stockName}</Text>
+                  <Text className="RankingList__item-code g-flex-cell g-flex-row">{item.stockCode}</Text>
+                </Text>
+                <Text className="g-flex-cell g-flex-row">{item.uptickRate}%</Text>
+                <Text className="g-flex-cell g-flex-row">{item.surgeRate}%</Text>
+                <Text className="g-flex-cell g-flex-row">{item.dealNum}</Text>
+                <Text className="g-flex-cell g-flex-row">{item.dealMoney}</Text>
+              </View>
+            )
+          })}
+        </View>
+        <AtLoadMore
+          onClick={this.getNextPage.bind(this)}
+          status={this.state.listStatus}
+        />
       </View>
     )
   }

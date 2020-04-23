@@ -9,7 +9,7 @@ import { saveUserInfo } from "@/api/user"
 const userInfo = new UserModel()
 
 interface IState {
-  list: Array<IStock>;
+  list: Array<IFollowStock>;
   needAuth: boolean;
 }
 

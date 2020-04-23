@@ -1,7 +1,7 @@
 import { Component } from "@tarojs/taro";
 import { View, Text } from "@tarojs/components";
 import { fetchKeyPoint } from "@/api/marketQuotation";
-import KeyPointModel from "@/models/MarketQuotation/KeyPointModel.ts"
+import KeyPointModel from "@/models/KeyPointModel.ts"
 
 import "./KeyPoint.scss"
 

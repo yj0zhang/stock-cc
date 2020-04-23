@@ -7,10 +7,17 @@
   &__sort-type {
     display: flex;
     justify-content: space-around;
+    &--active {
+      background-color: $colorPlaceholder;
+      border-radius: 10px;
+    }
   }
   &__list {
     display: flex;
     justify-content: space-between;
+  }
+  &__item-code {
+    color: $colorInfo;
   }
   &__table-title {
     color: $colorPlaceholder;
