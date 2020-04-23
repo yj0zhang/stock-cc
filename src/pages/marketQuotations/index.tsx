@@ -1,4 +1,4 @@
-import { Component } from "@tarojs/taro";
+import { Component, Config } from "@tarojs/taro";
 import { View } from "@tarojs/components";
 import KeyPoint from "@/components/market/KeyPoint";
 import MarketOverview from "@/components/market/MarketOverview";
@@ -11,6 +11,9 @@ export class MarketQuotation extends Component {
     super(props)
   }
 
+  config: Config = {
+    navigationBarTitleText: '行情'
+  }
   render() {
     return (
       <View className="MarketQuotation">
