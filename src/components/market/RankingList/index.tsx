@@ -89,7 +89,7 @@ export class RankingList extends Component<voidProps, IState> {
 
   gotoDetail(stock) {
     Taro.navigateTo({
-      url: `/pages/detail/index?id=${stock.stockId}`
+      url: `/packageA/pages/detail/index?id=${stock.stockId}`
     })
   }
 

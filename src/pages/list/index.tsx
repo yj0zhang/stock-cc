@@ -34,7 +34,7 @@ export default class Index extends Component<voidProps, IState> {
 
   handleClick(stock: IFollowStock) {
     Taro.navigateTo({
-      url: `/pages/detail/index?id=${stock.stockId}`
+      url: `/packageA/pages/detail/index?id=${stock.stockId}`
     })
   }
 

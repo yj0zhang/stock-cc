@@ -33,7 +33,6 @@ class App extends Component {
     pages: [
       'pages/marketQuotations/index',
       'pages/list/index',
-      'pages/detail/index'
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -57,7 +56,16 @@ class App extends Component {
           selectedIconPath: "assets/images/guanzhu-active.png"
         }
       ]
-    }
+    },
+    subPackages: [
+      {
+        root: "packageA",
+        name: "detail",
+        pages: [
+          "pages/detail/index"
+        ]
+      }
+    ]
   }
 
   // 在 App 类中的 render() 函数没有实际作用
