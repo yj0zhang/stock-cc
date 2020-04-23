@@ -45,7 +45,7 @@ export class KeyPoint extends Component<voidProps, IState> {
               return (
                 <View className="KeyPoint__card g-p-12 g-text-center">
                   <View className="KeyPoint__card-name">{item.stockName}</View>
-                  <View className="KeyPoint__card-num g-up">{item.currentPrice}</View>
+                  <View className={item.gap() > 0 ? "g-up" : item.gap() === 0 ? "" : "g-down"}>{item.currentPrice}</View>
                   <View>
                     <Text className={item.gap() > 0 ? "g-mr-8 g-font-small g-up" : item.gap() === 0 ? "g-mr-8 g-font-small" : "g-mr-8 g-font-small g-down"}>{item.gap() > 0 ? `+${item.gap()}` : item.gap()}</Text>
                     {/* <Text className="g-mr-8 g-font-small">{item.gap() > 0 ? `+${item.gap()}` : item.gap()}</Text> */}

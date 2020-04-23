@@ -93,6 +93,16 @@ export class RankingList extends Component<voidProps, IState> {
     })
   }
 
+  toggleSortType() {
+    this.setState({
+      sortType: this.state.sortType === TypeDict.asc ? TypeDict.desc : TypeDict.asc,
+      pageNum: 1,
+      list: []
+    }, () => {
+      this.getRankList()
+    })
+  }
+
   getClass(num: number) {
     let klass = "g-flex-cell g-flex-row";
     klass += num > 0 ? " g-up" : num === 0 ? "" : " g-down"
@@ -107,15 +117,19 @@ export class RankingList extends Component<voidProps, IState> {
     return (
       <View className="RankingList g-p-40 g-mb-40">
         <View className="g-py-20">股票排行</View>
-        <View className="RankingList__sort-type">
+        <View className="RankingList__sort-fields g-mb-10">
           {this.state.sortTypes.map(sType => {
             return (
-              <View className={this.state.sortField === sType.value ? "RankingList__sort-type--active": ""}>
+              <View className={this.state.sortField === sType.value ? "RankingList__sort-fields--active": ""}>
                 <AtButton size='small' onClick={this.getListByType.bind(this, sType)}>{sType.name}</AtButton>
               </View>
             )
           })}
         </View>
+        <View style="width: 40px">
+          <AtButton size="small" type="secondary" onClick={this.toggleSortType.bind(this)}>{this.state.sortType === TypeDict.asc ? "升序↑" : "降序↓"}</AtButton>
+        </View>
+
         <View className="RankingList__table g-py-20 g-flex-column g-flex-column--row-border">
           <View className="g-flex-cell g-flex-row">
             <Text className="g-flex-cell g-flex-row RankingList__table-title">股票</Text>

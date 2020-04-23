@@ -5,9 +5,9 @@
 
 .RankingList {
   background-color: $clr_white;
-  &__sort-type {
+  &__sort-fields {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     &--active {
       background-color: $colorPlaceholder;
       border-radius: 10px;
