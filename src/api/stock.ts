@@ -20,8 +20,8 @@ function fetchOffLineData(id) {
   return get("/stock/offline/line", {
     data: {
       stockId: id,
-      startDate: format(new Date(), "yyyy-MM-dd"),
-      endDate: format(getStartFromDay(new Date(), 180), "yyyy-MM-dd")
+      endDate: format(new Date(), "yyyy-MM-dd"),
+      startDate: format(getStartFromDay(new Date(), 180), "yyyy-MM-dd")
     }
   })
 }
