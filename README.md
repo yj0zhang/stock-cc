@@ -1,5 +1,6 @@
 # stock-cc
-股票信息展示，主要是小程序端
+股票信息展示，主要是小程序端（小程序没有金融相关资质，只能发体验版）
+[点击查看h5](https://yj0zhang.github.io/stock-cc/)
 
 使用TypeScript开发
 
