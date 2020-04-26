@@ -16,8 +16,8 @@ $ cnpm install -g @tarojs/cli
 ```
 
 然后安装一下依赖，接着运行脚本
-### 正式版二维码：
-![小程序二维码](./src/assets/gh_92f9e40e895f_430.jpg)
-
 ### 体验版二维码：
 ![体验版二维码](./src/assets/prepub.jpg)
+
+### 正式版二维码：
+![小程序二维码](./src/assets/gh_92f9e40e895f_430.jpg)
