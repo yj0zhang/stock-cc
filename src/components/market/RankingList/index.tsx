@@ -22,7 +22,7 @@ enum FieldDict {uptickRate = "uptickRate", surgeRate = "surgeRate", dealNum = "d
 
 enum StatusDict {ready = "more", loading = "loading", nomore = "noMore"};
 
-export class RankingList extends Component<voidProps, IState> {
+export default class RankingList extends Component<voidProps, IState> {
   constructor(props: voidProps) {
     super(props)
     this.state = {

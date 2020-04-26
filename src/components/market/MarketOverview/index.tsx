@@ -14,7 +14,7 @@ interface IState {
   hotName?: string;
 }
 
-export class MarketOverview extends Component<voidProps, IState> {
+export default class MarketOverview extends Component<voidProps, IState> {
   constructor(props:voidProps) {
     super(props)
     this.state = {

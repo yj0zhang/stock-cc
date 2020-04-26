@@ -8,7 +8,7 @@ import "./KeyPoint.scss"
 interface IState {
   list: Array<KeyPointClass>;
 }
-export class KeyPoint extends Component<voidProps, IState> {
+export default class KeyPoint extends Component<voidProps, IState> {
   constructor() {
     super()
     this.state = {
