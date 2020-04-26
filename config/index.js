@@ -1,4 +1,13 @@
 const path = require("path")
+const outputRootStrtegy = {
+  h5: "h5",
+  weapp: "weapp",
+  alipay: "alipay",
+  swan: "swan",
+  ["undefined"]: "dist"
+};
+const env = JSON.parse(process.env.npm_config_argv)["cooked"][1].split(":")[1];
+const outputRoot = env === "h5" ? "docs" : `dist/${outputRootStrtegy[env]}`;
 
 const config = {
   projectName: 'stock-cc',
@@ -10,7 +19,7 @@ const config = {
     '828': 1.81 / 2
   },
   sourceRoot: 'src',
-  outputRoot: 'docs',
+  outputRoot: outputRoot,
   babel: {
     sourceMap: true,
     presets: [
