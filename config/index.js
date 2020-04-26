@@ -67,7 +67,7 @@ const config = {
     }
   },
   h5: {
-    publicPath: '/',
+    publicPath: process.env.NODE_ENV === 'development' ? '/' : "https://github.com/yj0zhang/stock-cc/tree/master/docs",
     staticDirectory: 'static',
     postcss: {
       autoprefixer: {
