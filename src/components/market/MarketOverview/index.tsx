@@ -56,11 +56,11 @@ export default class MarketOverview extends Component<voidProps, IState> {
         <View className="MarketOverview__list">
 
           <View className="MarketOverview__card g-p-16">
-            <View className="MarketOverview__card-name">涨停</View>
+            <View className="MarketOverview__card-name">涨</View>
             <View className="g-up">{this.state.up}</View>
           </View>
           <View className="MarketOverview__card g-p-16">
-            <View className="MarketOverview__card-name">跌停</View>
+            <View className="MarketOverview__card-name">跌</View>
             <View className="g-down">{this.state.down}</View>
           </View>
           <View className="MarketOverview__card g-p-16">
