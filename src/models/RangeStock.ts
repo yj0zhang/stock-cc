@@ -1,3 +1,5 @@
+import { transformNumber, transformNumberV2 } from "@/shared/utils/numberTransform";
+
 function getRate(num): number {
   if (!num || isNaN(parseFloat(num))) {
     return 0;
@@ -21,7 +23,7 @@ export class RangeStock implements Stock {
     this.stockName = stockName;
     this.uptickRate = getRate(uptickRate);
     this.surgeRate = getRate(surgeRate);
-    this.dealNum = dealNum || 0;
-    this.dealMoney = dealMoney || 0;
+    this.dealNum = transformNumberV2(dealNum || 0, 3, 2);
+    this.dealMoney = transformNumberV2(dealMoney || 0, 3, 2);
   }
 }

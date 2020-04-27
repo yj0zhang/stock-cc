@@ -23,4 +23,7 @@
   &__table-title {
     color: $colorPlaceholder;
   }
+  &__table-col {
+    flex-direction: column;
+  }
 }

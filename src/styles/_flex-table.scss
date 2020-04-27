@@ -5,12 +5,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
-  > view {
+  > view, > div {
     padding: 10px;
   }
   &--row-border {
     // border: 1px solid $borderColorLighter;
-    > view {
+    > view, > div {
       border-bottom: 1px solid $borderColorLighter;
       &:last-child {
         border-bottom: none;

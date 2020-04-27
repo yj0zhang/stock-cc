@@ -141,7 +141,7 @@ export default class RankingList extends Component<voidProps, IState> {
           {this.state.list.map(item => {
             return (
               <View className="g-flex-cell g-flex-row" onClick={this.gotoDetail.bind(this, item)}>
-                <Text className="g-flex-cell g-flex-row">
+                <Text className="g-flex-cell g-flex-row RankingList__table-col">
                   <Text className="g-flex-cell g-flex-row">{item.stockName}</Text>
                   <Text className="RankingList__item-code g-flex-cell g-flex-row">{item.stockCode}</Text>
                 </Text>
