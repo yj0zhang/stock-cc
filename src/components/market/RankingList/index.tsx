@@ -147,8 +147,8 @@ export default class RankingList extends Component<voidProps, IState> {
                 </Text>
                 <Text className={this.getClass(item.uptickRate)}>{item.uptickRate}%</Text>
                 <Text className={this.getClass(item.surgeRate)}>{item.surgeRate}%</Text>
-                <Text className={this.getClass(item.dealNum)}>{item.dealNum}</Text>
-                <Text className={this.getClass(item.dealMoney)}>{item.dealMoney}</Text>
+                <Text className={this.getClass(parseFloat(item.dealNum))}>{item.dealNum}</Text>
+                <Text className={this.getClass(parseFloat(item.dealMoney))}>{item.dealMoney}</Text>
               </View>
             )
           })}
